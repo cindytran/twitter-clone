@@ -10,10 +10,15 @@ class Tweets extends React.Component {
     fetch('http://localhost:3000/api/v1/tweets').then((response) => response.json()).then((tweets)=>this.setState({ tweets }));
   }
   addTweet = (tweet) => {
-    console.log(tweet)
-    this.setState((state) =>({
-      tweets: state.tweets.concat([{message: tweet}])
-    }))
+    fetch('http://localhost:3000/api/v1/tweets', {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      body: JSON.stringify({ message: tweet })
+    }).then((response) => response.json()).then((tweet) =>
+      this.setState((state) =>({
+        tweets: state.tweets.concat([tweet])
+      }))
+    );
   }
   render () {
     return (

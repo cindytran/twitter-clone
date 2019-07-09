@@ -12,7 +12,6 @@ class AddTweet extends React.Component {
     })
   }
   updateNewTweet = (e) => {
-    console.log(e.target.value)
     this.setState({
       newTweet: e.target.value
     })
